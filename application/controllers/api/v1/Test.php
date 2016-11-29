@@ -4,7 +4,12 @@ require(APPPATH.'libraries/REST_Controller.php');
 
 class Test extends REST_Controller {
 
-    public function index_get()
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function users_get()
     {
         $id = $this->get('id');
         if ( $id == NULL ) {
@@ -20,7 +25,7 @@ class Test extends REST_Controller {
         }
     }
 
-    public function index_post()
+    public function users_post()
     {
         $data = array(
             'nama' => $this->input->post('nama'),
@@ -35,4 +40,4 @@ class Test extends REST_Controller {
 }
 
 /* End of file Test.php */
-/* Location: ./application/controllers/Test.php */
+/* Location: ./application/controllers/api/v1/Test.php */
