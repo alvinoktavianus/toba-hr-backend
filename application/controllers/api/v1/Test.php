@@ -32,7 +32,7 @@ class Test extends REST_Controller {
             'alamat' => $this->input->post('alamat')
         );
         if ( $this->db->insert('mahasiswa', $data) )
-            $this->response(NULL, REST_Controller::HTTP_OK);
+            $this->response(NULL, REST_Controller::HTTP_CREATED);
         else
             $this->response(NULL, REST_Controller::HTTP_BAD_REQUEST);
     }
