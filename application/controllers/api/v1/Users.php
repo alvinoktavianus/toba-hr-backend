@@ -12,22 +12,20 @@ class Users extends REST_Controller {
 
     public function login_post()
     {
-        $emplid = $this->input->post('emplid');
-        $password = $this->input->post('password');
+        $request = json_decode(file_get_contents('php://input'));
+        $email = $request->email;
+        $password = $request->password;
 
-        if ($emplid == NULL || $password == NULL) $this->response(NULL, REST_Controller::HTTP_UNAUTHORIZED);
-        else if ($emplid == "0") $this->response(NULL, REST_Controller::HTTP_BAD_REQUEST);
+        if ($email == NULL || $password == NULL) $this->response(NULL, REST_Controller::HTTP_UNAUTHORIZED);
         else {
-            $results = $this->users_model->get_users($emplid);
-            if (count($results) == 0) $this->response(NULL, REST_Controller::HTTP_NOT_FOUND);
+            $results = $this->users_model->get_users($email);
+            if ( count($results) == 0 ) $this->response(NULL, REST_Controller::HTTP_NOT_FOUND);
             else {
-
-                if ($results[0]->EmployeeID == $emplid && $this->bcrypt->check_password($password, $results[0]->Password)) {
-                    $this->response($this->users_model->get_users_session($emplid), REST_Controller::HTTP_OK);
+                if ( $results[0]->Email == $email && $this->bcrypt->check_password($password, $results[0]->Password) ) {
+                    $this->response($this->users_model->get_users_session($email), REST_Controller::HTTP_OK);
                 } else {
                     $this->response(NULL, REST_Controller::HTTP_BAD_REQUEST);
                 }
-
             }
         }
     }
