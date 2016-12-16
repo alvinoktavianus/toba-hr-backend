@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users_model extends CI_Model {
 
-    public function get_users($email)
+    public function get_users($emplid)
     {
-        $this->db->where('Email', $email);
+        $this->db->where('EmployeeID', $emplid);
         return $this->db->get('Ms_Employee')->result();
     }
 

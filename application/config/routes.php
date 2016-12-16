@@ -63,3 +63,6 @@ $route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/
 
 /* Test Routes */
 $route['api/v1/test/users/(:num)'] = 'api/v1/test/users/id/$1';
+
+/* URL Routing */
+$route['api/v1/users/(:num)'] = 'api/v1/users/index/id/$1';

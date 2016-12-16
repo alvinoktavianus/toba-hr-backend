@@ -12,6 +12,19 @@ class Users extends REST_Controller {
         $this->load->model('users_model');
     }
 
+    public function index_get()
+    {
+        $id = $this->get('id');
+        if ($id != null) {
+            if ( count($this->users_model->get_users($id)) > 0 )
+                $this->response($this->users_model->get_users($id)[0], REST_Controller::HTTP_OK);
+            else
+                $this->response(NULL, REST_Controller::HTTP_NOT_FOUND);
+        } else {
+            $this->response(NULL, REST_Controller::HTTP_UNAUTHORIZED);
+        }
+    }
+
     public function login_post()
     {
         $request = json_decode(file_get_contents('php://input'));
