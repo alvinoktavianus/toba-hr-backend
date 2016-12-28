@@ -36,7 +36,7 @@ class Users extends REST_Controller {
             $results = $this->users_model->get_users($email);
             if ( count($results) == 0 ) $this->response(NULL, REST_Controller::HTTP_NOT_FOUND);
             else {
-                if ( $results[0]->Email == $email && $this->bcrypt->check_password($password, $results[0]->Password) ) {
+                if ( $results[0]->Email == $email && $this->bcrypt->check_password($password, $results[0]->Password) && $results[0]->Role == 'emp' ) {
                     $this->response($this->users_model->get_users_session($email), REST_Controller::HTTP_OK);
                 } else {
                     $this->response(NULL, REST_Controller::HTTP_BAD_REQUEST);
