@@ -12,7 +12,6 @@ class Users_model extends CI_Model {
     public function get_users_by_emplid($emplid)
     {
         $this->db->where('EmployeeID', $emplid);
-        $this->db->select('EmployeeID, FullName');
         return $this->db->get('MsEmployee')->result();
     }
 
