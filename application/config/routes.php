@@ -66,3 +66,4 @@ $route['api/v1/test/users/(:num)'] = 'api/v1/test/users/id/$1';
 
 /* URL Routing */
 $route['api/v1/users/(:num)'] = 'api/v1/users/index/id/$1';
+$route['api/v1/users/update/(:num)'] = 'api/v1/users/update/id/$1';

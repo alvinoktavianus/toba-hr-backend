@@ -22,6 +22,12 @@ class Users_model extends CI_Model {
         return $this->db->get('MsEmployee')->result()[0];
     }
 
+    public function update_users_by_email($id, $object)
+    {
+        $this->db->where('EmployeeID', $id);
+        $this->db->update('MsEmployee', $object);
+    }
+
 }
 
 /* End of file Users_model.php */
