@@ -48,7 +48,7 @@ class Users extends REST_Controller {
         }
     }
 
-    public function update_put()
+    public function update_post()
     {
         $request = json_decode(file_get_contents('php://input'));
         $data = array();
