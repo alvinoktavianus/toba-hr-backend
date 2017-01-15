@@ -51,11 +51,18 @@ class Users extends REST_Controller {
     public function update_post()
     {
         $request = json_decode(file_get_contents('php://input'));
+
         $data = array();
-        if ( isset($request->password) ) $data['Password'] = $this->bcrypt->hash_password($request->password);
-        if ( isset($request->address) ) $data['Address'] = $request->address;
+
+        if ( isset($request->fullname) ) $data['FullName'] = $request->fullnae;
+        if ( isset($request->address) ) $data['Address'] = $request->address;        
+        if ( isset($request->birthdate) ) $data['BirthDate'] = $request->birthdate;
+        if ( isset($request->birthlocation) ) $data['BirthLocation'] = $request->birthlocation;
+        if ( isset($request->idcardno) ) $data['IdCardNo'] = $request->idcardno;        
+        if ( isset($request->mobile) ) $data['PhoneNo'] = $request->mobile;
         if ( isset($request->postalcode) ) $data['PostalCode'] = $request->postalcode;
-        if ( isset($request->phoneno) ) $data['PhoneNo'] = $request->phoneno;
+        if ( isset($request->bloodtype) ) $data['BloodType'] = $request->bloodtype;
+
         if ( $data != null ) {
             $data['UpdatedAt'] = date(DATE_W3C, now('Asia/Jakarta'));
             $data['UpdatedBy'] = $this->get('id');
