@@ -17,7 +17,7 @@ class Users extends REST_Controller {
         $id = $this->get('id');
         if ($id != null) {
             if ( count($this->users_model->get_users_by_emplid($id)) > 0 ) {
-                $this->response($this->users_model->get_users_by_emplid($id)[0], REST_Controller::HTTP_OK);
+                $this->response($this->users_model->get_users_by_emplid($id), REST_Controller::HTTP_OK);
             } else {
                 $this->response(NULL, REST_Controller::HTTP_NOT_FOUND);
             }
